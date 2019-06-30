@@ -106,6 +106,7 @@
 #   Note: Leave a leading space when adding list items with the += operator
 ################################################################################
 # PROJECT_CFLAGS = 
+PROJECT_CFLAGS += -s "BINARYEN_TRAP_MODE='clamp'"
 
 ################################################################################
 # PROJECT OPTIMIZATION CFLAGS

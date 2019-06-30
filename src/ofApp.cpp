@@ -56,7 +56,7 @@ void ofApp::draw()
     ofEnableDepthTest();
     if (displayPoints)
     {
-        glPointSize(4.0);
+        //todo: glPointSize(4.0);
         m.setMode(ofPrimitiveMode::OF_PRIMITIVE_POINTS);
     }
     else

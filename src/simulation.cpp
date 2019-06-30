@@ -325,34 +325,16 @@ void Simulation::addCollisionForce()
         }
     };
 
-    std::vector<std::thread> threads;
-
-    int numCellsPerThread = (int)cells.size() / parameters.numThreads;
 
     std::vector<int> indexes;
     int counter{0};
     for (const auto &iter : cells)
     {
         indexes.push_back(iter.first);
-        if (counter != 0 && counter % numCellsPerThread == 0 &&
-            counter < numCellsPerThread * parameters.numThreads)
-        {
-            threads.emplace_back(std::thread(collisionDetection, indexes));
-            indexes.clear();
-        }
         counter++;
     }
 
-    // add last thread with remainders
-    threads.emplace_back(std::thread(collisionDetection, indexes));
-
-    for (auto &thread : threads)
-    {
-        if (thread.joinable())
-        {
-            thread.join();
-        }
-    }
+	collisionDetection(indexes);
 }
 
 void Simulation::addBulgeForce(Particle &p)
